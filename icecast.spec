@@ -1,5 +1,7 @@
 Summary:	Icecast - streaming MP3 server
+Summary(es):	Un servidor de streams MP3
 Summary(pl):	Icecast - Serwer strumieni MP3
+Summary(pt_BR):	Um servidor de streams MP3
 Name:		icecast
 Version:	1.3.11
 Release:	3
@@ -31,14 +33,22 @@ were pretty much closed source, non-free software implementations, b)
 Shoutcast doesn't allow you to run your own directory servers, or
 support them, and c) we thought it would be a lot of fun.
 
+%description -l es
+Icecast es un sistema de Transmisión (broadcast) en Internet que
+utiliza la tecnología MP3.
+
 %description -l pl
 Icecast to Internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
-mp3serv autorstwa Scotta Manleya. Projekt icecast zosta³ rozpoczêty
-z kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi,
+mp3serv autorstwa Scotta Manleya. Projekt icecast zosta³ rozpoczêty z
+kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi,
 zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na
-wystartowanie swoich w³asnych directory servers czy wspieraæ ich,
-c) to niez³a zabawa.
+wystartowanie swoich w³asnych directory servers czy wspieraæ ich, c)
+to niez³a zabawa.
+
+%description -l pt_BR
+O Icecast é um sistema de broadcast na Internet que utiliza a
+tecnologia MP3.
 
 %prep
 %setup -q
