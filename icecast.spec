@@ -15,11 +15,11 @@ BuildRequires:	readline-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 Prereq:		rc-scripts
-Prereq:		/sbin/chkconfig
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
+Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,18 +79,18 @@ rm -r $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`/usr/bin/getgid icecast`" ]; then
-        if [ "`/usr/bin/getgid icecast`" != "57" ]; then
-                echo "Warning: group icecast haven't gid=57. Correct this before installing icecast." 1>&2
-                exit 1
-        fi
+	if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+		echo "Error: group icecast doesn't have gid=57. Correct this before installing icecast." 1>&2
+		exit 1
+	fi
 else
-        /usr/sbin/groupadd -g 57 -r -f icecast
+	 /usr/sbin/groupadd -g 57 -r -f icecast
 fi
 if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
-        if [ "`/usr/bin/getgid icecast`" != "57" ]; then
-                echo "Warning: user icecast haven't uid=57. Correct this before installing icecast." 1>&2
-                exit 1
-        fi
+	if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+		echo "Error: user icecast doesn't have uid=57. Correct this before installing icecast." 1>&2
+		exit 1
+	fi
 else
 	/usr/sbin/useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast 1>&2
 fi
