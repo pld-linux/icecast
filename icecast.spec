@@ -1,16 +1,14 @@
-%define	snap	beta
-%define	beta	3
-Summary:	Icecast - streaming MP3 server
-Summary(es):	Un servidor de streams MP3
-Summary(pl):	Icecast - Serwer strumieni MP3
-Summary(pt_BR):	Um servidor de streams MP3
+Summary:	Icecast - streaming MP3 and OGG server
+Summary(es):	Un servidor de streams MP3, OGG
+Summary(pl):	Icecast - Serwer strumieni MP3 i OGG
+Summary(pt_BR):	Um servidor de streams MP3, OGG
 Name:		icecast
-Version:	2.0
-Release:	0.%{snap}_%{beta}.1
-Epoch:		1
+Version:	2.0.0
+Release:	1
+Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://www.icecast.org/files/%{name}-%{version}-%{snap}-%{beta}.tar.gz
+Source0:	http://www.icecast.org/files/%{name}-%{version}.tar.gz
 # Source0-md5:	872734ecc898aaf195b3f6021b70e0c1
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
@@ -63,7 +61,7 @@ O Icecast é um sistema de broadcast na Internet que utiliza a
 tecnologia MP3.
 
 %prep
-%setup -q -n %{name}-%{version}-%{snap}-%{beta}
+%setup -q -n %{name}-%{version}
 
 %build
 %{__aclocal} -I m4
