@@ -27,9 +27,8 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/icecast ]; then
-		msg_starting Icecast
 		# Our daemon function doesn't have --shell option!
-		su icecast -s /bin/sh -c 'icecast -b' 2>&1 > /dev/null
+		su icecast -s /bin/sh -c 'icecast -b' > /dev/null
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/icecast
 	else
