@@ -63,7 +63,7 @@ case "$1" in
 		killproc icecast -HUP
 		RETVAL=$?
 	else
-		msg_not_running Icecast
+		msg_not_running Icecast >&2
 		exit 7
 	fi
 	;;
