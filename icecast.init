@@ -18,7 +18,7 @@
 
 # Check that networking is up.
 if is_no "${NETWORKING}"; then
-	msg_Network_Down <service>
+	msg_Network_Down icecast
 	exit 1
 fi
 
@@ -28,7 +28,7 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/icecast ]; then
 		msg_starting icecast
-		daemon icecast
+		daemon icecast -b
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/icecast
 	else
