@@ -17,9 +17,13 @@
 [ -f /etc/sysconfig/icecast ] && . /etc/sysconfig/icecast
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-	msg_Network_Down icecast
-	exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down icecast
+		exit 1
+	fi
+else
+	exit 0
 fi
 
 # See how we were called.
@@ -32,25 +36,25 @@ case "$1" in
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/icecast
 	else
-		msg_Already_Running Icecast
+		msg_already_running Icecast
 		exit 1
 	fi
-        ;;
+	;;
   stop)
-        # Stop daemons.
+	# Stop daemons.
 	if [ -f /var/lock/subsys/icecast ]; then
 		msg_stopping icecast
 		killproc icecast
 		rm -f /var/lock/subsys/icecast >/dev/null 2>&1
 	else
-		msg_Not_Running Icecast
+		msg_not_running Icecast
 		exit 1
 	fi	
-        ;;
+	;;
   restart)
-        $0 stop
+	$0 stop
 	$0 start
-        ;;
+	;;
   reload)
 	if [ -f /var/lock/subsys/icecast ]; then
 		msg_show Icecast
@@ -60,7 +64,7 @@ case "$1" in
 		deltext
 		ok		
 	else
-		msg_Not_Running Icecast
+		msg_not_running Icecast
 		exit 1
 	fi
 	;;
@@ -76,10 +80,10 @@ case "$1" in
   status)
 	status icecast
 	exit $?
-        ;;
+	;;
   *)
-	msg_usage "$0 {start|stop|status|restart|reload|force-reload}"
-        exit 1
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 1
 esac
 
 exit $RETVAL
