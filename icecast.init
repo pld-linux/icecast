@@ -3,7 +3,7 @@
 # icecast	This shell script takes care of starting and stopping icecast
 #
 # chkconfig:	345 96 24
-# description:	Icecast is an Internet audio broadcasting system based on
+# description:	Icecast is an Internet audio broadcasting system based on \
 #		MPEG audio technology.
 
 # Source function library
