@@ -7,20 +7,21 @@ Summary(pt_BR):	Um servidor de streams MP3
 Name:		icecast
 Version:	2.0
 Release:	0.%{snap}_%{beta}.1
+Epoch:		1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.icecast.org/files/%{name}-%{version}-%{snap}-%{beta}.tar.gz
 # Source0-md5:	872734ecc898aaf195b3f6021b70e0c1
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
-BuildRequires:	readline-devel
-BuildRequires:	curl-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	curl-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	libogg-devel
 BuildRequires:	libvorbis-devel
+BuildRequires:	readline-devel
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
