@@ -9,7 +9,7 @@ Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.icecast.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	872734ecc898aaf195b3f6021b70e0c1
+# Source0-md5:	d3e902bee8c0a60ad7d5d054a2047aa1
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	autoconf
