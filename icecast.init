@@ -35,7 +35,7 @@ case "$1" in
 		msg_starting icecast
 		busy
 		# Our daemon function doesn't have --shell option!
-		su icecast -s /bin/sh -c 'icecast -b' > /dev/null
+		su icecast -s /bin/sh -c 'setsid icecast -c /etc/icecast/icecast.xml &' > /dev/null
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && ok || fail
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/icecast
