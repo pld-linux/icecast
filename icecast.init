@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# icecast	This shell script takes care of starting and stopping
+#		icecast.
+#
+# chkconfig: 345 96 24
+# description: Icecast is an Internet audio broadcasting system based on
+#              MPEG audio technology.
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+# Check that icecast.conf exists.
+[ -f /etc/icecast.conf ] || exit 0
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemons.
+	echo -n "Starting icecast: "
+	daemon icecast > /dev/null 2>&1
+	echo icecast
+	touch /var/lock/subsys/icecast
+	;;
+  stop)
+        # Stop daemons.
+	echo -n "Shutting down icecast: "
+	killproc icecast > /dev/null 2>&1
+	echo icecast
+	rm -f /var/lock/subsys/icecast
+	;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  status)
+	status icecast
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|status}"
+	exit 1
+esac
+
+exit 0
