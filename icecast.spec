@@ -97,10 +97,10 @@ if [ -n "`/usr/bin/getgid icecast`" ]; then
 		exit 1
 	fi
 else
-	/usr/sbin/groupadd -g 57 -r -f icecast
+	/usr/sbin/groupadd -g 57 icecast
 fi
 if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
-	if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+	if [ "`/bin/id -u icecast`" != "57" ]; then
 		echo "Error: user icecast doesn't have uid=57. Correct this before installing icecast." 1>&2
 		exit 1
 	fi
