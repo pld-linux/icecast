@@ -1,10 +1,12 @@
+# TODO:
+# - logrotate file
 Summary:	Icecast - streaming MP3 and OGG server
 Summary(es):	Un servidor de streams MP3, OGG
 Summary(pl):	Icecast - Serwer strumieni MP3 i OGG
 Summary(pt_BR):	Um servidor de streams MP3, OGG
 Name:		icecast
 Version:	2.0.1
-Release:	1
+Release:	1.1
 Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
@@ -130,7 +132,7 @@ fi
 %doc AUTHORS NEWS README TODO doc/*.{html,jpg}
 %attr(754,root,root) /etc/rc.d/init.d/icecast
 %attr(755,root,root) %{_bindir}/*
-%attr(750,root,icecast) %{_sysconfdir}
+%attr(750,root,icecast) %dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.xml
 %{_datadir}/icecast
-%attr(770,root,icecast) /var/log/icecast
+%attr(770,root,icecast) %config(noreplace) %verify(not md5 size mtime) /var/log/icecast
