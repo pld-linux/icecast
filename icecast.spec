@@ -5,8 +5,6 @@ Version:	1.3.11
 Release:	2
 License:	GPL
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-am15.patch
