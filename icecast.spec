@@ -2,15 +2,17 @@ Summary:	Icecast - streaming MP3 server
 Summary(pl):	Serwer strumieni MP3
 Name:		icecast
 Version:	1.3.11
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
 Prereq:		rc-scripts
+Prereq:		/sbin/chkconfig
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,8 +26,8 @@ support them, and c) we thought it would be a lot of fun.
 
 %description -l pl
 Icecast to Internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
-Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz
-program mp3serv autorswa Scotta Manleya.
+Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
+mp3serv autorswa Scotta Manleya.
 
 %prep
 %setup -q
@@ -49,6 +51,9 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 
+%clean
+rm -r $RPM_BUILD_ROOT
+
 %post
 chkconfig --add icecast
 if [ -f /var/lock/subsys/icecast ]; then
@@ -64,9 +69,6 @@ if [ "$1" = "0" ] ; then
 	fi
 	/sbin/chkconfig --del icecast >&2
 fi
-
-%clean
-rm -r $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
