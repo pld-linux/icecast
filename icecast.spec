@@ -11,6 +11,7 @@ Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
 # Source0-md5:	69ba36d30722884ea538b70628f1de80
 Source1:	%{name}.init
 Patch0:		%{name}-am15.patch
+Patch1:		%{name}-errno.patch
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
 BuildRequires:	autoconf
@@ -54,6 +55,7 @@ tecnologia MP3.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
