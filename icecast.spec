@@ -61,13 +61,13 @@ O Icecast é um sistema de broadcast na Internet que utiliza a
 tecnologia MP3.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %{__aclocal} -I m4
 %{__autoheader}
 %{__libtoolize} --automake
-%{__automake} --add-missing
+%{__automake}
 %{__autoconf}
 %configure
 
