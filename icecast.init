@@ -27,12 +27,12 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/icecast ]; then
-		msg_starting icecast
+		msg_starting Icecast
 		daemon icecast -b
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/icecast
 	else
-		msg_Already_Running icecast
+		msg_Already_Running Icecast
 		exit 1
 	fi
         ;;
@@ -43,7 +43,7 @@ case "$1" in
 		killproc icecast
 		rm -f /var/lock/subsys/icecast >/dev/null 2>&1
 	else
-		msg_Not_Running icecast
+		msg_Not_Running Icecast
 		exit 1
 	fi	
         ;;
@@ -53,14 +53,14 @@ case "$1" in
         ;;
   reload)
 	if [ -f /var/lock/subsys/icecast ]; then
-		msg_show icecast
+		msg_show Icecast
 		msg_reload
 		busy
 		killproc icecast -HUP
 		deltext
 		ok		
 	else
-		msg_Not_Running icecast
+		msg_Not_Running Icecast
 		exit 1
 	fi
 	;;
