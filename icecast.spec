@@ -50,7 +50,7 @@ chkconfig --add icecast
 if [ -f /var/lock/subsys/icecast ]; then
 	/etc/rc.d/init.d/icecast restart >&2
 else
-	echo "Run '/etc/rc.d/init.d/mrtd start' to start icecast deamon." >&2
+	echo "Run '/etc/rc.d/init.d/icecast start' to start icecast deamon." >&2
 fi
 
 %preun
