@@ -46,10 +46,20 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 
 %post
-DESC="icecast daemon"; %chkconfig_add
+chkconfig --add icecast
+if [ -f /var/lock/subsys/icecast ]; then
+	/etc/rc.d/init.d/icecast restart >&2
+else
+	echo "Run '/etc/rc.d/init.d/icecast start' to start icecast deamon." >&2
+fi
 
 %preun
-%chkconfig_del
+if [ "$1" = "0" ] ; then
+	if [ -f /var/lock/subsys/icecast ]; then
+		/etc/rc.d/init.d/icecast stop >&2
+	fi
+	/sbin/chkconfig --del icecast >&2
+fi
 
 %clean
 rm -r $RPM_BUILD_ROOT
