@@ -10,6 +10,7 @@ Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
+Prereq:		rc-scripts
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
