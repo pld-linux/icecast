@@ -7,7 +7,7 @@ Summary(pt_BR):	Um servidor de streams MP3, Ogg
 Name:		icecast
 Version:	2.2.0
 Release:	1
-Epoch:		1
+Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://svn.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
