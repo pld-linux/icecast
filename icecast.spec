@@ -1,9 +1,9 @@
 # TODO:
 # - logrotate file
-Summary:	Icecast - streaming MP3 and OGG server
-Summary(es):	Un servidor de streams MP3, OGG
-Summary(pl):	Icecast - serwer strumieni MP3 i OGG
-Summary(pt_BR):	Um servidor de streams MP3, OGG
+Summary:	Icecast - streaming MP3 and Ogg server
+Summary(es):	Un servidor de streams MP3, Ogg
+Summary(pl):	Icecast - serwer strumieni MP3 i Ogg
+Summary(pt_BR):	Um servidor de streams MP3, Ogg
 Name:		icecast
 Version:	2.0.2
 Release:	2
