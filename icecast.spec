@@ -114,7 +114,7 @@ if [ "$1" = "0" ] ; then
 	/sbin/chkconfig --del icecast >&2
 fi
 
- 
+
 %postun
 if [ "$1" = "0" ]; then
        /usr/sbin/userdel icecast 2>/dev/null
