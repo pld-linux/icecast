@@ -1,7 +1,7 @@
 Summary:	Icecast - streaming MP3 server
 Name:		icecast
 Version:	1.3.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
@@ -42,10 +42,18 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 
 %post
 chkconfig --add icecast
+if [ -f /var/lock/subsys/icecast ]; then
+	/etc/rc.d/init.d/icecast restart >&2
+else
+	echo "Run '/etc/rc.d/init.d/mrtd start' to start icecast deamon." >&2
+fi
 
 %preun
 if [ "$1" = "0" ] ; then
-	chkconfig --del icecast
+	if [ -f /var/lock/subsys/icecast ]; then
+		/etc/rc.d/init.d/icecast stop >&2
+	fi
+	/sbin/chkconfig --del icecast >&2
 fi
 
 %clean
