@@ -1,12 +1,12 @@
 Summary:	Icecast - streaming MP3 server
 Name:		icecast
 Version:	1.3.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
-Source1:	icecast.init
+Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
