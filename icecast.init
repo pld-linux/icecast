@@ -79,8 +79,7 @@ case "$1" in
 	exit $?
         ;;
   *)
-        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
-	msg_Usage "$0 {start|stop|status|restart|reload|force-reload}"
+	msg_usage "$0 {start|stop|status|restart|reload|force-reload}"
         exit 1
 esac
 
