@@ -8,6 +8,7 @@ Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
+# Source0-md5:	69ba36d30722884ea538b70628f1de80
 Source1:	%{name}.init
 Patch0:		%{name}-am15.patch
 URL:		http://www.icecast.org/
