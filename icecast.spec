@@ -1,15 +1,16 @@
-%define	snap	20030913
+%define	snap	beta
+%define	beta	3
 Summary:	Icecast - streaming MP3 server
 Summary(es):	Un servidor de streams MP3
 Summary(pl):	Icecast - Serwer strumieni MP3
 Summary(pt_BR):	Um servidor de streams MP3
 Name:		icecast
-Version:	2.0b
-Release:	0.%{snap}.1
+Version:	2.0
+Release:	0.%{snap}_%{beta}.1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://www.icecast.org/files/icecast_2.0_nightly_snapshot.tgz
-# Source0-md5:	8879eada6c2a18168b94a8b9b88cc729
+Source0:	http://www.icecast.org/files/%{name}-%{version}-%{snap}-%{beta}.tar.gz
+# Source0-md5:	872734ecc898aaf195b3f6021b70e0c1
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
