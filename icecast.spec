@@ -9,7 +9,7 @@ Release:	0.%{snap}.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.icecast.org/files/icecast_2.0_nightly_snapshot.tgz
-# Source0-md5:	3528ed1cc9eeca9ac3c715eea1f5ff87
+# Source0-md5:	8879eada6c2a18168b94a8b9b88cc729
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
