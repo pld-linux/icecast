@@ -1,5 +1,5 @@
 Summary:	Icecast - streaming MP3 server
-Summary(pl):	Serwer strumieni MP3
+Summary(pl):	Icecast - Serwer strumieni MP3
 Name:		icecast
 Version:	1.3.11
 Release:	3
@@ -34,7 +34,11 @@ support them, and c) we thought it would be a lot of fun.
 %description -l pl
 Icecast to Internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
-mp3serv autorstwa Scotta Manleya.
+mp3serv autorstwa Scotta Manleya. Projekt icecast zosta³ rozpoczêty
+z kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi, 
+zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na 
+wystartowanie swoich w³asnych directory servers czy wspieraæ ich,
+c) to niez³a zabawa.
 
 %prep
 %setup -q
