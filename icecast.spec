@@ -2,7 +2,7 @@ Summary:	Icecast - streaming MP3 server
 Summary(pl):	Serwer strumieni MP3
 Name:		icecast
 Version:	1.3.11
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
@@ -14,6 +14,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 Prereq:		rc-scripts
 Prereq:		/sbin/chkconfig
+Requires(pre):	/bin/id
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
+Requires(pre):	/usr/sbin/useradd
+Requires(postun):	/usr/sbin/groupdel
+Requires(postun):	/usr/sbin/userdel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,6 +63,24 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 %clean
 rm -r $RPM_BUILD_ROOT
 
+%pre
+if [ -n "`/usr/bin/getgid icecast`" ]; then
+        if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+                echo "Warning: group icecast haven't gid=57. Correct this before installing icecast." 1>&2
+                exit 1
+        fi
+else
+        /usr/sbin/groupadd -g 57 -r -f icecast
+fi
+if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
+        if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+                echo "Warning: user icecast haven't uid=57. Correct this before installing icecast." 1>&2
+                exit 1
+        fi
+else
+	/usr/sbin/useradd -u 57 -r -d /dev/null -s /bin/bash -c "Streamcast" -g icecast icecast 1>&2
+fi
+
 %post
 chkconfig --add icecast
 if [ -f /var/lock/subsys/icecast ]; then
@@ -73,12 +97,18 @@ if [ "$1" = "0" ] ; then
 	/sbin/chkconfig --del icecast >&2
 fi
 
+%postun
+if [ "$1" = "0" ]; then
+	/usr/sbin/userdel icecast 2>/dev/null
+	/usr/sbin/groupdel icecast 2>/dev/null
+fi
+
 %files
-%defattr(644,root,root,755)
+%defattr(644,icecast,icecast,755)
 %doc doc/manual.html
 %dir %{_sysconfdir}/icecast
-%attr(600,root,root) %{_sysconfdir}/icecast/*
-%attr(754,root,root) /etc/rc.d/init.d/icecast
-%attr(755,root,root) %{_sbindir}/*
+%attr(640,root,icecast) %{_sysconfdir}/icecast/*
+%attr(754,root,icecast) /etc/rc.d/init.d/icecast
+%attr(750,icecast,icecast) %{_sbindir}/*
 %{_datadir}/icecast
-/var/log/icecast
+%attr(770,root,icecast) /var/log/icecast
