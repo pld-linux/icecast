@@ -12,6 +12,8 @@ Source1:	%{name}.init
 Patch0:		%{name}-am15.patch
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 Prereq:		rc-scripts
 Prereq:		/sbin/chkconfig
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -28,7 +30,7 @@ support them, and c) we thought it would be a lot of fun.
 %description -l pl
 Icecast to Internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
-mp3serv autorswa Scotta Manleya.
+mp3serv autorstwa Scotta Manleya.
 
 %prep
 %setup -q
