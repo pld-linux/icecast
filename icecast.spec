@@ -38,7 +38,7 @@ mp3serv autorstwa Scotta Manleya.
 rm -f missing
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-readline \
 	--enable-fsstd
