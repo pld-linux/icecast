@@ -16,7 +16,7 @@ URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-Prereq:		rc-scripts
+PreReq:		rc-scripts
 Requires(pre): /bin/id
 Requires(pre): /usr/bin/getgid
 Requires(pre): /usr/sbin/groupadd
@@ -78,7 +78,7 @@ install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 
 %clean
-rm -r $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`/usr/bin/getgid icecast`" ]; then
