@@ -20,6 +20,7 @@ BuildRequires:	curl-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	libogg-devel
+BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 BuildRequires:	readline-devel
 PreReq:		rc-scripts
