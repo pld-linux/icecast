@@ -24,7 +24,6 @@ support them, and c) we thought it would be a lot of fun.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-libwrap \
 	--with-readline \
@@ -45,7 +44,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 chkconfig --add icecast
 
 %preun
-if [ "$1" = 0 ] ; then
+if [ "$1" = "0" ] ; then
 	chkconfig --del icecast
 fi
 
