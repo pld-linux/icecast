@@ -2,16 +2,16 @@
 # - logrotate file
 Summary:	Icecast - streaming MP3 and OGG server
 Summary(es):	Un servidor de streams MP3, OGG
-Summary(pl):	Icecast - Serwer strumieni MP3 i OGG
+Summary(pl):	Icecast - serwer strumieni MP3 i OGG
 Summary(pt_BR):	Um servidor de streams MP3, OGG
 Name:		icecast
-Version:	2.0.1
+Version:	2.0.2
 Release:	1.1
 Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://www.icecast.org/files/%{name}-%{version}.tar.gz
-# Source0-md5:	dc193027769aa49d2223ff06dcc80f5c
+Source0:	http://svn.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
+# Source0-md5:	92d7a814db7c64075c3d4c1e480fbf25
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	autoconf
@@ -97,7 +97,7 @@ else
 	/usr/sbin/groupadd -g 57 -r -f icecast
 fi
 if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
-	if [ "`/usr/bin/getgid icecast`" != "57" ]; then
+	if [ "`/bin/id -u icecast`" != "57" ]; then
 		echo "Error: user icecast doesn't have uid=57. Correct this before installing icecast." 1>&2
 		exit 1
 	fi
