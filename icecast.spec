@@ -1,7 +1,7 @@
 Summary:	Icecast - streaming MP3 server
 Summary(pl):	Serwer strumieni MP3
 Name:		icecast
-Version:	1.3.10
+Version:	1.3.11
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
@@ -30,6 +30,9 @@ program mp3serv autorswa Scotta Manleya.
 %setup -q
 
 %build
+aclocal
+autoconf
+automake -a -c
 %configure \
 	--with-readline \
 	--enable-fsstd
