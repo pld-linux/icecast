@@ -35,8 +35,8 @@ support them, and c) we thought it would be a lot of fun.
 Icecast to Internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
 mp3serv autorstwa Scotta Manleya. Projekt icecast zosta³ rozpoczêty
-z kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi, 
-zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na 
+z kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi,
+zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na
 wystartowanie swoich w³asnych directory servers czy wspieraæ ich,
 c) to niez³a zabawa.
 
@@ -82,7 +82,7 @@ if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
                 exit 1
         fi
 else
-	/usr/sbin/useradd -u 57 -r -d /dev/null -s /bin/bash -c "Streamcast" -g icecast icecast 1>&2
+	/usr/sbin/useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast 1>&2
 fi
 
 %post
@@ -108,11 +108,11 @@ if [ "$1" = "0" ]; then
 fi
 
 %files
-%defattr(644,icecast,icecast,755)
+%defattr(644,root,root,755)
 %doc doc/manual.html
 %dir %{_sysconfdir}/icecast
 %attr(640,root,icecast) %{_sysconfdir}/icecast/*
-%attr(754,root,icecast) /etc/rc.d/init.d/icecast
-%attr(750,icecast,icecast) %{_sbindir}/*
+%attr(754,root,root) /etc/rc.d/init.d/icecast
+%attr(755,root,root) %{_sbindir}/*
 %{_datadir}/icecast
 %attr(770,root,icecast) /var/log/icecast
