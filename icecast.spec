@@ -73,9 +73,9 @@ if [ "$1" = "0" ] ; then
 	/sbin/chkconfig --del icecast >&2
 fi
 
-%files 
+%files
 %defattr(644,root,root,755)
-%doc doc/manual.html 
+%doc doc/manual.html
 %dir %{_sysconfdir}/icecast
 %attr(600,root,root) %{_sysconfdir}/icecast/*
 %attr(754,root,root) /etc/rc.d/init.d/icecast
