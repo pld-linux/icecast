@@ -9,6 +9,7 @@ Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Source0:	http://www.icecast.org/releases/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
+Patch0:		%{name}-am15.patch
 URL:		http://www.icecast.org/
 BuildRequires:	readline-devel
 Prereq:		rc-scripts
@@ -31,8 +32,10 @@ mp3serv autorswa Scotta Manleya.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+rm -f missing
 aclocal
 autoconf
 automake -a -c
