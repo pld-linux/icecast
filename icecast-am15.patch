@@ -1,0 +1,26 @@
+--- icecast-1.3.11/src/Makefile.am~	Tue Apr 24 19:17:53 2001
++++ icecast-1.3.11/src/Makefile.am	Wed Sep 26 12:05:39 2001
+@@ -4,7 +4,7 @@
+ 
+ SUBDIRS = authenticate
+ 
+-bin_PROGRAMS = icecast
++sbin_PROGRAMS = icecast
+ 
+ noinst_HEADERS = admin.h alias.h avl.h avl_functions.h client.h		\
+ 			definitions.h commandline.h commands.h connection.h	\
+@@ -23,12 +23,6 @@
+ 			ice_string.c dir.c vars.c memory.c ice_resolv.c \
+ 			item.c pool.c interpreter.c vsnprintf.c
+ 
+-icecast_LDADD = authenticate/libauthenticate.a @WRAPLIBS@ @CRYPTLIB@
++icecast_LDADD = authenticate/libauthenticate.a $(WRAPLIBS) $(CRYPTLIB)
+ 
+-INCLUDES = -D_REENTRANT @WRAPINCLUDES@ 
+-
+-if FSSTD
+-bindir=$(ICECAST_SBINDIR)
+-else
+-bindir=$(ICECAST_BINDIR)
+-endif
++INCLUDES = -D_REENTRANT $(WRAPINCLUDES)
