@@ -23,7 +23,7 @@ BuildRequires:	libogg-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel
 BuildRequires:	readline-devel
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.202
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
@@ -91,22 +91,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`/usr/bin/getgid icecast`" ]; then
-	if [ "`/usr/bin/getgid icecast`" != "57" ]; then
-		echo "Error: group icecast doesn't have gid=57. Correct this before installing icecast." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/groupadd -g 57 icecast
-fi
-if [ -n "`/bin/id -u icecast 2>/dev/null`" ]; then
-	if [ "`/bin/id -u icecast`" != "57" ]; then
-		echo "Error: user icecast doesn't have uid=57. Correct this before installing icecast." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast 1>&2
-fi
+%groupadd -g 57 icecast
+%useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast
 
 %post
 chkconfig --add icecast
