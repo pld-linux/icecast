@@ -5,25 +5,27 @@ Summary(es):	Un servidor de streams MP3, Ogg
 Summary(pl):	Icecast - serwer strumieni MP3 i Ogg
 Summary(pt_BR):	Um servidor de streams MP3, Ogg
 Name:		icecast
-Version:	2.2.0
-Release:	2
+Version:	2.3.0
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
-Source0:	http://svn.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
-# Source0-md5:	7958347af55651384298828175e32dcf
+Source0:	http://downloads.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
+# Source0-md5:	35256fbc4a93571662af2ed18fbbfcc5
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
-BuildRequires:	curl-devel
+BuildRequires:	curl-devel >= 7.10.0
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
-BuildRequires:	libogg-devel
+BuildRequires:	libogg-devel >= 2:1.0
+BuildRequires:	libtheora-devel
 BuildRequires:	libtool
-BuildRequires:	libvorbis-devel
+BuildRequires:	libvorbis-devel >= 1:1.0
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.202
+BuildRequires:	speex-devel
 PreReq:		rc-scripts
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
@@ -69,9 +71,9 @@ tecnologia MP3.
 %setup -q
 
 %build
+%{__libtoolize}
 %{__aclocal} -I m4
 %{__autoheader}
-%{__libtoolize} --automake
 %{__automake}
 %{__autoconf}
 %configure
@@ -80,7 +82,7 @@ tecnologia MP3.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{etc/rc.d/init.d,var/log/icecast}
+install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,/var/log/icecast}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -122,6 +124,6 @@ fi
 %attr(754,root,root) /etc/rc.d/init.d/icecast
 %attr(755,root,root) %{_bindir}/*
 %attr(750,root,icecast) %dir %{_sysconfdir}
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/*.xml
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.xml
 %{_datadir}/icecast
-%attr(770,root,icecast) %config(noreplace) %verify(not md5 size mtime) /var/log/icecast
+%attr(770,root,icecast) %config(noreplace) %verify(not md5 mtime size) /var/log/icecast
