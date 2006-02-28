@@ -17,23 +17,23 @@ URL:		http://www.icecast.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	curl-devel >= 7.10.0
-BuildRequires:	libxml2-devel
-BuildRequires:	libxslt-devel
 BuildRequires:	libogg-devel >= 2:1.0
 BuildRequires:	libtheora-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel >= 1:1.0
+BuildRequires:	libxml2-devel
+BuildRequires:	libxslt-devel
 BuildRequires:	readline-devel
-BuildRequires:	rpmbuild(macros) >= 1.202
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	speex-devel
-PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
+Requires(postun):	/usr/sbin/groupdel
+Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
-Requires(postun):	/usr/sbin/groupdel
-Requires(postun):	/usr/sbin/userdel
-Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 Provides:	group(icecast)
 Provides:	user(icecast)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -41,27 +41,26 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc/%{name}
 
 %description
-Icecast2 is an Internet based broadcasting system based on the Mpeg
+Icecast is an Internet based broadcasting system based on the Mpeg
 Layer III streaming technology. It was originally inspired by
 Nullsoft's Shoutcast and also mp3serv by Scott Manley. The icecast
 project was started for several reasons: a) all broadcasting systems
 were pretty much closed source, non-free software implementations, b)
 Shoutcast doesn't allow you to run your own directory servers, or
-support them, and c) we thought it would be a lot of fun. Unstable
-version.
+support them, and c) we thought it would be a lot of fun.
 
 %description -l es
-Icecast2 es un sistema de Transmisión (broadcast) en Internet que
+Icecast es un sistema de Transmisión (broadcast) en Internet que
 utiliza la tecnología MP3.
 
 %description -l pl
-Icecast2 to internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
+Icecast to internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
 mp3serv autorstwa Scotta Manleya. Projekt icecast2 zosta³ rozpoczêty z
 kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi,
 zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na
 wystartowanie swoich w³asnych directory servers czy wspieraæ ich, c)
-to niez³a zabawa. Uwaga - to ci±gle wersja unstable.
+to niez³a zabawa.
 
 %description -l pt_BR
 O Icecast é um sistema de broadcast na Internet que utiliza a
@@ -97,18 +96,12 @@ rm -rf $RPM_BUILD_ROOT
 %useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast
 
 %post
-chkconfig --add icecast
-if [ -f /var/lock/subsys/icecast ]; then
-	/etc/rc.d/init.d/icecast restart >&2
-else
-	echo "Run '/etc/rc.d/init.d/icecast start' to start icecast deamon." >&2
-fi
+/sbin/chkconfig --add icecast
+%service icecast restart "icecast deamon"
 
 %preun
 if [ "$1" = "0" ] ; then
-	if [ -f /var/lock/subsys/icecast ]; then
-		/etc/rc.d/init.d/icecast stop >&2
-	fi
+	%service icecast stop
 	/sbin/chkconfig --del icecast >&2
 fi
 
