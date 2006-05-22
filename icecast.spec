@@ -97,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add icecast
-%service icecast restart "icecast deamon"
+%service icecast restart "icecast daemon"
 
 %preun
 if [ "$1" = "0" ] ; then
