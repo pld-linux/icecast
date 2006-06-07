@@ -6,7 +6,7 @@ Summary(pl):	Icecast - serwer strumieni MP3 i Ogg
 Summary(pt_BR):	Um servidor de streams MP3, Ogg
 Name:		icecast
 Version:	2.3.1
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 %groupadd -g 57 icecast
-%useradd -u 57 -r -d /dev/null -s /bin/false -c "Streamcast" -g icecast icecast
+%useradd -u 57 -r -d /usr/share/empty -s /bin/false -c "Streamcast" -g icecast icecast
 
 %post
 /sbin/chkconfig --add icecast
