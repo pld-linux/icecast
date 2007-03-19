@@ -1,12 +1,12 @@
 # TODO:
 # - logrotate file
 Summary:	Icecast - streaming MP3 and Ogg server
-Summary(es.UTF-8):	Un servidor de streams MP3, Ogg
-Summary(pl.UTF-8):	Icecast - serwer strumieni MP3 i Ogg
-Summary(pt_BR.UTF-8):	Um servidor de streams MP3, Ogg
+Summary(es):	Un servidor de streams MP3, Ogg
+Summary(pl):	Icecast - serwer strumieni MP3 i Ogg
+Summary(pt_BR):	Um servidor de streams MP3, Ogg
 Name:		icecast
 Version:	2.3.1
-Release:	4
+Release:	5
 Epoch:		2
 License:	GPL
 Group:		Networking/Daemons
@@ -50,21 +50,21 @@ were pretty much closed source, non-free software implementations, b)
 Shoutcast doesn't allow you to run your own directory servers, or
 support them, and c) we thought it would be a lot of fun.
 
-%description -l es.UTF-8
-Icecast es un sistema de TransmisiÃ³n (broadcast) en Internet que
-utiliza la tecnologÃ­a MP3.
+%description -l es
+Icecast es un sistema de Transmisión (broadcast) en Internet que
+utiliza la tecnología MP3.
 
-%description -l pl.UTF-8
-Icecast to internetowy serwer rozsyÅ‚ajÄ…cy strumienie MPEG Layer III.
+%description -l pl
+Icecast to internetowy serwer rozsy³aj±cy strumienie MPEG Layer III.
 Oryginalnie zainspirowany przez Shoutcast firmy Nullsoft oraz program
-mp3serv autorstwa Scotta Manleya. Projekt icecast2 zostaÅ‚ rozpoczÄ™ty z
-kilku powodÃ³w: a) wszystkie systemy broadcastowe byÅ‚y Å‚adnymi,
-zamkniÄ™tymi programami, non-free, b) Shoutcast nie pozwala na
-wystartowanie swoich wÅ‚asnych directory servers czy wspieraÄ‡ ich, c)
-to niezÅ‚a zabawa.
+mp3serv autorstwa Scotta Manleya. Projekt icecast2 zosta³ rozpoczêty z
+kilku powodów: a) wszystkie systemy broadcastowe by³y ³adnymi,
+zamkniêtymi programami, non-free, b) Shoutcast nie pozwala na
+wystartowanie swoich w³asnych directory servers czy wspieraæ ich, c)
+to niez³a zabawa.
 
-%description -l pt_BR.UTF-8
-O Icecast Ã© um sistema de broadcast na Internet que utiliza a
+%description -l pt_BR
+O Icecast é um sistema de broadcast na Internet que utiliza a
 tecnologia MP3.
 
 %prep
