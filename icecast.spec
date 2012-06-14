@@ -5,24 +5,26 @@ Summary(es.UTF-8):	Un servidor de streams MP3, Ogg
 Summary(pl.UTF-8):	Icecast - serwer strumieni MP3 i Ogg
 Summary(pt_BR.UTF-8):	Um servidor de streams MP3, Ogg
 Name:		icecast
-Version:	2.3.2
-Release:	3
+Version:	2.3.3
+Release:	1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	http://downloads.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
-# Source0-md5:	ff516b3ccd2bcc31e68f460cd316093f
+# Source0-md5:	2b5d1b40778922e5f6431b7758c359ad
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	curl-devel >= 7.10.0
+BuildRequires:	libkate-devel
 BuildRequires:	libogg-devel >= 2:1.0
 BuildRequires:	libtheora-devel
 BuildRequires:	libtool
 BuildRequires:	libvorbis-devel >= 1:1.0
 BuildRequires:	libxml2-devel
 BuildRequires:	libxslt-devel
+BuildRequires:	openssl-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
@@ -116,8 +118,8 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README TODO doc/*.{html,jpg}
 %attr(754,root,root) /etc/rc.d/init.d/icecast
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/icecast
 %attr(750,root,icecast) %dir %{_sysconfdir}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.xml
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/icecast.xml
 %{_datadir}/icecast
 %attr(770,root,icecast) %config(noreplace) %verify(not md5 mtime size) /var/log/icecast
