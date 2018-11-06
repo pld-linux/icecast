@@ -5,13 +5,13 @@ Summary(es.UTF-8):	Un servidor de streams MP3, Ogg
 Summary(pl.UTF-8):	Icecast - serwer strumieni MP3 i Ogg
 Summary(pt_BR.UTF-8):	Um servidor de streams MP3, Ogg
 Name:		icecast
-Version:	2.4.3
-Release:	2
+Version:	2.4.4
+Release:	1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
-Source0:	http://downloads.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
-# Source0-md5:	83d7d34dbe22f0f8fc119d2c9839efc0
+Source0:	https://downloads.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
+# Source0-md5:	835c7b571643f6436726a6118defb366
 Source1:	%{name}.init
 URL:		http://www.icecast.org/
 BuildRequires:	autoconf >= 2.54
