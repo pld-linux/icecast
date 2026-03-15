@@ -5,28 +5,30 @@ Summary(es.UTF-8):	Un servidor de streams MP3, Ogg
 Summary(pl.UTF-8):	Icecast - serwer strumieni MP3 i Ogg
 Summary(pt_BR.UTF-8):	Um servidor de streams MP3, Ogg
 Name:		icecast
-Version:	2.4.4
-Release:	4
+Version:	2.5.0
+Release:	1
 Epoch:		2
 License:	GPL v2
 Group:		Networking/Daemons
 Source0:	https://downloads.xiph.org/releases/icecast/%{name}-%{version}.tar.gz
-# Source0-md5:	835c7b571643f6436726a6118defb366
+# Source0-md5:	74df941a7f526fa03bb55d7f4bb64686
 Source1:	%{name}.init
-URL:		http://www.icecast.org/
+URL:		https://www.icecast.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	curl-devel >= 7.10.0
-BuildRequires:	libkate-devel
+BuildRequires:	libigloo-devel >= 0.9.4
+BuildRequires:	libmaxminddb-devel >= 1.3.2
 BuildRequires:	libogg-devel >= 2:1.0
 BuildRequires:	libtheora-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libvorbis-devel >= 1:1.0
-BuildRequires:	libxml2-devel
+BuildRequires:	libxml2-devel >= 2.0
 BuildRequires:	libxslt-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 1.1.0
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
+BuildRequires:	rhash-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	speex-devel
 Requires(post,preun):	/sbin/chkconfig
@@ -36,6 +38,8 @@ Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
+Requires:	libigloo >= 0.9.4
+Requires:	libmaxminddb >= 1.3.2
 Requires:	rc-scripts
 Provides:	group(icecast)
 Provides:	user(icecast)
@@ -75,10 +79,11 @@ tecnologia MP3.
 %build
 %{__libtoolize}
 %{__aclocal} -I m4
+%{__autoconf}
 %{__autoheader}
 %{__automake}
-%{__autoconf}
-%configure
+%configure \
+	--disable-silent-rules
 
 %{__make}
 
@@ -92,7 +97,7 @@ install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,/var/log/icecast}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/icecast
 
 # packaged as %doc
-%{__rm} $RPM_BUILD_ROOT%{_docdir}/icecast/{AUTHORS,COPYING,ChangeLog,NEWS,README,TODO}
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/icecast/{AUTHORS,COPYING,ChangeLog,NEWS,README.md}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -119,7 +124,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README TODO
+%doc AUTHORS ChangeLog NEWS README.md
 %{_docdir}/icecast
 %attr(754,root,root) /etc/rc.d/init.d/icecast
 %attr(755,root,root) %{_bindir}/icecast
